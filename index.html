@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate ₹10 🥺</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#dff6ff,#c7ebff);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    width:90%;
+    max-width:500px;
+    box-shadow:0 10px 35px rgba(0,0,0,0.15);
+}
+
+h1{
+    color:#2b5876;
+    margin-bottom:15px;
+}
+
+p{
+    color:#555;
+    margin-bottom:25px;
+}
+
+.buttons{
+    position:relative;
+    height:80px;
+}
+
+button{
+    border:none;
+    padding:12px 28px;
+    border-radius:15px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.yes{
+    background:#6cc4ff;
+    color:white;
+}
+
+.yes:hover{
+    transform:scale(1.05);
+}
+
+.no{
+    background:#eeeeee;
+    position:absolute;
+    left:60%;
+}
+
+.option{
+    background:#6cc4ff;
+    color:white;
+    margin:8px;
+}
+
+.qr{
+    width:260px;
+    max-width:100%;
+    border-radius:20px;
+    margin:20px 0;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.amount{
+    font-size:28px;
+    font-weight:bold;
+    color:#2b5876;
+    margin-bottom:10px;
+}
+
+.hidden{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="mainCard">
+
+    <div id="step1">
+        <h1>Will you give me ₹10? 🥺</h1>
+        <p>Your contribution will make my day a little better.</p>
+
+        <div class="buttons">
+            <button class="yes" onclick="showStep2()">Yes ❤️</button>
+            <button class="no" id="noBtn">No 😈</button>
+        </div>
+    </div>
+
+    <div id="step2" class="hidden">
+        <h1>I thought you'd click No 😂</h1>
+        <p>Would you like to donate a little more?</p>
+
+        <button class="option" onclick="showPayment(20)">₹20</button>
+        <button class="option" onclick="showPayment(30)">₹30</button>
+        <button class="option" onclick="showPayment(40)">₹40</button>
+        <button class="option" onclick="showPayment(10)">No</button>
+    </div>
+
+    <div id="step3" class="hidden">
+        <h1>Thank You ❤️</h1>
+
+        <div class="amount" id="amountText"></div>
+
+        <img src="qr.jpg" class="qr" alt="QR Code">
+
+        <p><b>Payment Below 👇</b></p>
+
+        <button class="yes">Thanks ✨</button>
+    </div>
+
+</div>
+
+<script>
+
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+
+    const maxX = window.innerWidth - 120;
+    const maxY = window.innerHeight - 80;
+
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+    noBtn.style.position = "fixed";
+});
+
+function showStep2(){
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
+}
+
+function showPayment(amount){
+
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("step3").classList.remove("hidden");
+
+    document.getElementById("amountText").innerHTML =
+    "Amount: ₹" + amount;
+}
+
+</script>
+
+</body>
+</html>
