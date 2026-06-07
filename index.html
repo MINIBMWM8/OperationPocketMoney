@@ -183,8 +183,16 @@ function showPayment(amount){
 }
 function customAmount() {
     function copyUPI() {
-    navigator.clipboard.writeText("6282655151@fam");
-    alert("UPI ID copied!");
+
+    const upi = "6282655151@fam";
+
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(upi)
+            .then(() => alert("UPI ID copied!"))
+            .catch(() => prompt("Copy this UPI ID:", upi));
+    } else {
+        prompt("Copy this UPI ID:", upi);
+    }
 }
 
     let amount = prompt(
