@@ -125,13 +125,17 @@ button{
     <div id="step3" class="hidden">
         <h1>Thank You ❤️</h1>
 
-        <div class="amount" id="amountText"></div>
+<div class="amount" id="amountText"></div>
 
-        <img src="qr.jpg" class="qr" alt="QR Code">
+<a id="payBtn">
+    <button class="yes" style="margin-bottom:15px;">
+        Pay Now 💸
+    </button>
+</a>
 
-        <p><b>Payment Below 👇</b></p>
+<img src="qr.jpg" class="qr" alt="QR Code">
 
-        <button class="yes">Thanks ✨</button>
+<p><b>Or scan the QR code above 👆</b></p>
     </div>
 
 </div>
@@ -162,6 +166,9 @@ function showPayment(amount){
 
     document.getElementById("amountText").innerHTML =
     "Amount: ₹" + amount;
+
+    document.getElementById("payBtn").href =
+    `upi://pay?pa=6282655151@fam&pn=AJ&am=${amount}&cu=INR`;
 }
 
 </script>
