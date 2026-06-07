@@ -182,19 +182,23 @@ function showPayment(amount){
 `upi://pay?pa=6282655151@fam&pn=Ajayshankar%20J&tn=Donation&am=${amount}&cu=INR`;
 }
 function customAmount() {
-    function copyUPI() {
+function copyUPI() {
 
-    const upi = "6282655151@fam";
+    const text = "6282655151@fam";
 
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(upi)
-            .then(() => alert("UPI ID copied!"))
-            .catch(() => prompt("Copy this UPI ID:", upi));
-    } else {
-        prompt("Copy this UPI ID:", upi);
-    }
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    document.body.appendChild(temp);
+
+    temp.select();
+    temp.setSelectionRange(0, 99999);
+
+    document.execCommand("copy");
+
+    document.body.removeChild(temp);
+
+    alert("UPI ID copied!");
 }
-
     let amount = prompt(
         "Enter donation amount (₹10 - ₹10000)"
     );
