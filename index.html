@@ -137,6 +137,9 @@ button{
 <img src="qr.jpg" class="qr" alt="QR Code">
 
 <p><b>Or scan the QR code above 👆</b></p>
+<button class="option" onclick="copyUPI()">
+    📋 Copy UPI ID
+</button>
     </div>
 
 </div>
@@ -176,9 +179,13 @@ function showPayment(amount){
     "Amount: ₹" + amount;
 
     document.getElementById("payBtn").href =
-`upi://pay?pa=babyjayaram12345@okaxis&pn=Ajayshankar%20J&tn=Donation&am=${amount}&cu=INR`;
+`upi://pay?pa=6282655151@fam&pn=Ajayshankar%20J&tn=Donation&am=${amount}&cu=INR`;
 }
 function customAmount() {
+    function copyUPI() {
+    navigator.clipboard.writeText("6282655151@fam");
+    alert("UPI ID copied!");
+}
 
     let amount = prompt(
         "Enter donation amount (₹10 - ₹10000)"
