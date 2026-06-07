@@ -120,6 +120,7 @@ button{
         <button class="option" onclick="showPayment(30)">₹30</button>
         <button class="option" onclick="showPayment(40)">₹40</button>
         <button class="option" onclick="showPayment(10)">No</button>
+        <button class="option" onclick="customAmount()">Custom 💸</button>
     </div>
 
     <div id="step3" class="hidden">
@@ -144,14 +145,21 @@ button{
 
 const noBtn = document.getElementById("noBtn");
 
-noBtn.addEventListener("mouseover", () => {
+function moveNoButton() {
 
-    const maxX = window.innerWidth - 120;
-    const maxY = window.innerHeight - 80;
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
 
+    noBtn.style.position = "fixed";
     noBtn.style.left = Math.random() * maxX + "px";
     noBtn.style.top = Math.random() * maxY + "px";
-    noBtn.style.position = "fixed";
+}
+
+noBtn.addEventListener("mouseover", moveNoButton);
+
+noBtn.addEventListener("touchstart", function(e){
+    e.preventDefault();
+    moveNoButton();
 });
 
 function showStep2(){
@@ -169,6 +177,33 @@ function showPayment(amount){
 
     document.getElementById("payBtn").href =
     `upi://pay?pa=6282655151@fam&pn=AJ&am=${amount}&cu=INR`;
+}
+function customAmount() {
+
+    let amount = prompt(
+        "Enter donation amount (₹10 - ₹10000)"
+    );
+
+    if(amount === null) return;
+
+    amount = parseInt(amount);
+
+    if(isNaN(amount)){
+        alert("Please enter a valid number.");
+        return;
+    }
+
+    if(amount < 10){
+        alert("Minimum donation is ₹10.");
+        return;
+    }
+
+    if(amount > 10000){
+        alert("Maximum donation is ₹10000.");
+        return;
+    }
+
+    showPayment(amount);
 }
 
 </script>
